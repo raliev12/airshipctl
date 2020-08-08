@@ -123,3 +123,12 @@ func DumpKubeConfig(kconf *airshipv1.KubeConfig, root string, fs document.FileSy
 	}
 	return file.Name(), nil
 }
+
+// SaveKubeConfig saves kubeconfig data to a file named by filename
+func SaveKubeConfig(data []byte, filename string) error {
+	fs := document.NewDocumentFs()
+	if err := fs.WriteFile(filename, data); err != nil {
+		return err
+	}
+	return nil
+}
